@@ -1,0 +1,2680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Raimundos Barbearia — Estilo & Autoestima</title>
+<meta name="description" content="Raimundos Barbearia — o lugar onde estilo e autoestima se encontram. Agende seu horário online." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=Rye&family=Yellowtail&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+<meta property="og:image" content="assets/logo.jpg" />
+<meta property="og:title" content="Raimundos Barbearia" />
+<meta property="og:description" content="O lugar onde estilo e autoestima se encontram." />
+<script>
+  // Apply saved theme as early as possible to avoid FOUC
+  (function() {
+    try {
+      var saved = localStorage.getItem('raimundos:theme');
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch(e) {}
+  })();
+</script>
+<style>
+  /* ---------- Tokens ---------- */
+  :root {
+    /* Defaults = dark mode (paleta tirada do logo: verde-floresta + bordô) */
+    --bg: #0a0e0c;
+    --bg-rgb: 10, 14, 12;
+    --bg-2: #131815;
+    --bg-3: #1a211e;
+    --line: #28302c;
+    --line-soft: #1f2622;
+    --ink: #efe8d8;
+    --ink-rgb: 239, 232, 216;
+    --ink-dim: #b8ad97;
+    --ink-mute: #7a7060;
+    --gold: #3d8d77;
+    --gold-2: #58b29a;
+    --gold-deep: #1d5247;
+    --accent-rgb: 61, 141, 119;
+    --on-accent: #0a1814;
+    --burgundy: #b65261;
+    --burgundy-soft: rgba(182, 82, 97, 0.14);
+    --whats: #25d366;
+    --warn: #c05a3e;
+    --warn-soft: rgba(192, 90, 62, 0.12);
+    --ok: #6a9b76;
+    --shadow-strong: 0 30px 80px rgba(0,0,0,0.5);
+    --serif: "Bebas Neue", "Impact", "Oswald", sans-serif;
+    --display: "Bebas Neue", "Impact", "Oswald", sans-serif;
+    --brand: "Rye", "Georgia", "Times New Roman", serif;
+    --script: "Yellowtail", "Brush Script MT", cursive;
+    --sans: "DM Sans", system-ui, -apple-system, sans-serif;
+    --maxw: 1180px;
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --bg: #f3ecd9;
+    --bg-rgb: 243, 236, 217;
+    --bg-2: #eae3ce;
+    --bg-3: #ddd4ba;
+    --line: #c4baa1;
+    --line-soft: #d3c9af;
+    --ink: #19211c;
+    --ink-rgb: 25, 33, 28;
+    --ink-dim: #4f574f;
+    --ink-mute: #82826f;
+    --gold: #1d5247;
+    --gold-2: #2a6b5a;
+    --gold-deep: #0f3a32;
+    --accent-rgb: 29, 82, 71;
+    --on-accent: #f4efe1;
+    --burgundy: #8d3641;
+    --burgundy-soft: rgba(141, 54, 65, 0.1);
+    --warn: #a14530;
+    --warn-soft: rgba(161, 69, 48, 0.1);
+    --ok: #3f7053;
+    --shadow-strong: 0 30px 70px rgba(20, 24, 18, 0.18);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  ::selection { background: var(--gold); color: #0b0a09; }
+
+  /* ---------- Typography ---------- */
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  h1, h2, h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+  }
+  .section-title {
+    font-size: clamp(2.4rem, 5.6vw, 3.9rem);
+    margin: 14px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .section-sub {
+    color: var(--ink-dim);
+    max-width: 56ch;
+    margin: 0 auto;
+    font-size: 0.98rem;
+  }
+
+  /* ---------- Layout helpers ---------- */
+  .container {
+    width: 100%;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+  section {
+    padding: 88px 0;
+    position: relative;
+  }
+  .section-head {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .divider {
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px;
+    color: var(--gold);
+    margin: 18px 0 6px;
+  }
+  .divider::before, .divider::after {
+    content: "";
+    height: 1px; width: 56px;
+    background: linear-gradient(90deg, transparent, var(--gold-deep), transparent);
+  }
+  .divider span {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(var(--bg-rgb), 0.72);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s, background .3s;
+  }
+  .nav.scrolled {
+    background: rgba(var(--bg-rgb), 0.92);
+    border-bottom-color: var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 22px;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    gap: 1rem;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-logo {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: block;
+    border: 1px solid var(--line);
+    flex-shrink: 0;
+    background: var(--bg-3);
+  }
+  .brand-name {
+    font-family: var(--brand);
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .brand-name b { color: var(--gold); font-weight: 400; }
+
+  .nav-links {
+    display: none;
+    gap: 36px;
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    font-weight: 500;
+    transition: color .2s;
+    position: relative;
+    padding-bottom: 3px;
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width .28s cubic-bezier(.4,0,.2,1);
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-burger {
+    display: grid;
+    gap: 5px;
+    background: transparent;
+    border: 1px solid var(--line);
+    padding: 9px 11px;
+    cursor: pointer;
+    transition: border-color .2s;
+  }
+  .nav-burger:hover { border-color: var(--gold); }
+  .nav-burger span {
+    display: block;
+    width: 18px; height: 1.5px;
+    background: var(--ink);
+    transition: transform .25s, opacity .25s;
+  }
+  .nav.open .nav-burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav.open .nav-burger span:nth-child(2) { opacity: 0; }
+  .nav.open .nav-burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;
+    border-top: 1px solid transparent;
+  }
+  .nav.open .mobile-menu {
+    max-height: 360px;
+    border-top-color: var(--line);
+  }
+  .mobile-menu ul {
+    list-style: none;
+    margin: 0; padding: 18px 22px 24px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .mobile-menu a {
+    display: block;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 0.86rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    transition: color .2s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+  .mobile-menu .btn-gold { margin-top: 14px; }
+
+  /* ---------- Button ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 24px;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform .15s, background .2s, color .2s, border-color .2s;
+    white-space: nowrap;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--on-accent);
+    border-color: var(--gold);
+  }
+  .btn-gold:hover {
+    background: var(--gold-2);
+    border-color: var(--gold-2);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(var(--accent-rgb), 0.06);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 120px 0 80px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 30%, rgba(var(--accent-rgb),0.10), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(var(--accent-rgb),0.06), transparent 60%),
+      var(--bg);
+  }
+  .hero::before {
+    /* subtle barber-pole-ish diagonal texture */
+    content: "";
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(var(--ink-rgb),0.012) 0 2px,
+      transparent 2px 14px
+    );
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+  .hero-copy .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-copy .eyebrow::before {
+    content: ""; width: 28px; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: var(--brand);
+    font-size: clamp(2.6rem, 7.8vw, 5rem);
+    margin: 22px 0 26px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.08;
+  }
+  .hero h1 .accent {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 400;
+  }
+  .hero-tag {
+    font-family: var(--script);
+    font-style: normal;
+    font-size: clamp(1.5rem, 3.6vw, 2.2rem);
+    color: var(--ink-dim);
+    max-width: 22ch;
+    margin: 0 0 36px;
+    line-height: 1.25;
+    letter-spacing: 0.005em;
+  }
+  .hero-ctas {
+    display: flex; flex-wrap: wrap; gap: 14px;
+  }
+  .hero-meta {
+    margin-top: 56px;
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+  }
+  .hero-meta div { min-width: 90px; }
+  .hero-meta .k {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .hero-meta .v {
+    font-size: 0.74rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 6px;
+  }
+
+  /* Hero visual */
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 4/5;
+    max-height: 560px;
+    border: 1px solid var(--line);
+    background:
+      linear-gradient(140deg, var(--bg-2) 0%, var(--bg-3) 100%);
+    overflow: hidden;
+  }
+  .hero-visual::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(var(--accent-rgb),0.08) 0 1px,
+      transparent 1px 18px
+    );
+  }
+  .hero-visual::after {
+    content: "EST. 2013 · LAJEADO/RS";
+    position: absolute;
+    bottom: 18px; left: 0; right: 0;
+    text-align: center;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    color: var(--ink-mute);
+  }
+  .hero-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 62%;
+    max-width: 280px;
+    transform: translate(-50%, -54%);
+    z-index: 2;
+    border-radius: 50%;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+  }
+  :root[data-theme="light"] .hero-logo {
+    box-shadow: 0 14px 40px rgba(20,24,18,0.18);
+  }
+  .hero-visual .frame-corner {
+    position: absolute;
+    width: 22px; height: 22px;
+    border: 1px solid var(--gold);
+  }
+  .hero-visual .frame-corner.tl { top: 14px; left: 14px; border-right: 0; border-bottom: 0; }
+  .hero-visual .frame-corner.tr { top: 14px; right: 14px; border-left: 0; border-bottom: 0; }
+  .hero-visual .frame-corner.bl { bottom: 14px; left: 14px; border-right: 0; border-top: 0; }
+  .hero-visual .frame-corner.br { bottom: 14px; right: 14px; border-left: 0; border-top: 0; }
+  .hero-badge {
+    position: absolute;
+    top: 18px; right: 18px;
+    width: 120px; height: 120px;
+    border: 1px solid var(--gold);
+    background: var(--bg);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    text-align: center;
+    transform: rotate(-8deg);
+  }
+  .hero-badge .est {
+    font-family: var(--serif);
+    color: var(--gold);
+    font-size: 0.78rem;
+    letter-spacing: 0.28em;
+  }
+  .hero-badge .year {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--ink);
+    line-height: 1;
+    margin: 6px 0;
+  }
+  .hero-badge .since {
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* ---------- Services ---------- */
+  .services { background: var(--bg-2); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .svc {
+    background: var(--bg-2);
+    padding: 36px 28px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 20px;
+    align-items: center;
+    transition: background .25s;
+    position: relative;
+  }
+  .svc:hover { background: var(--bg-3); }
+  .svc-num {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--gold);
+    font-style: italic;
+    width: 44px;
+    text-align: center;
+    border-right: 1px solid var(--line);
+    padding-right: 18px;
+  }
+  .svc-body h3 {
+    font-size: 1.7rem;
+    margin-bottom: 4px;
+  }
+  .svc-body p {
+    margin: 0;
+    color: var(--ink-dim);
+    font-size: 0.88rem;
+  }
+  .svc-price {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    color: var(--ink);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .svc-price small {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ---------- Gallery ---------- */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .ph {
+    position: relative;
+    aspect-ratio: 1/1;
+    background: var(--bg-2);
+    overflow: hidden;
+    border: 1px solid var(--line-soft);
+  }
+  .ph::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      var(--angle, 45deg),
+      rgba(var(--accent-rgb),0.08) 0 1px,
+      transparent 1px 14px
+    );
+  }
+  .ph::after {
+    content: attr(data-label);
+    position: absolute;
+    inset: auto 0 14px 0;
+    text-align: center;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    color: var(--ink-mute);
+  }
+  .ph .corner {
+    position: absolute;
+    width: 14px; height: 14px;
+    border: 1px solid var(--gold-deep);
+    opacity: 0.7;
+  }
+  .ph .corner.tl { top: 8px; left: 8px; border-right: 0; border-bottom: 0; }
+  .ph .corner.br { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }
+
+  /* ---------- Team ---------- */
+  .team { background: var(--bg-2); }
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .barber {
+    text-align: center;
+    padding: 32px 22px;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    transition: transform .25s, border-color .25s;
+  }
+  .barber:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-deep);
+  }
+  .avatar {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    margin: 0 auto 22px;
+    background:
+      radial-gradient(circle at 50% 35%, var(--bg-3) 0%, var(--bg-2) 80%);
+    border: 1px solid var(--gold-deep);
+    display: grid; place-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(var(--accent-rgb),0.10) 0 1px,
+      transparent 1px 10px
+    );
+  }
+  .avatar .initials {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    position: relative;
+  }
+  .barber h3 {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
+  .barber .role {
+    font-size: 0.74rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .barber .bio {
+    color: var(--ink-dim);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  /* ---------- Location ---------- */
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .map {
+    position: relative;
+    aspect-ratio: 4/3;
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(circle at 50% 50%, var(--bg-2) 0%, var(--bg) 100%);
+    overflow: hidden;
+  }
+  .map::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(var(--accent-rgb),0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--accent-rgb),0.10) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .map-pin {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -100%);
+    text-align: center;
+  }
+  .map-pin .dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin: 0 auto;
+    box-shadow: 0 0 0 6px rgba(var(--accent-rgb),0.18), 0 0 0 16px rgba(var(--accent-rgb),0.09);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  .map-pin .label {
+    font-family: var(--serif);
+    color: var(--gold);
+    margin-top: 8px;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 6px rgba(var(--accent-rgb),0.18), 0 0 0 16px rgba(var(--accent-rgb),0.09); }
+    50%     { box-shadow: 0 0 0 10px rgba(var(--accent-rgb),0.12), 0 0 0 24px rgba(var(--accent-rgb),0.04); }
+  }
+  .map::after {
+    content: "MAPA · DEMONSTRATIVO";
+    position: absolute;
+    bottom: 14px; left: 14px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--ink-mute);
+  }
+
+  .info-block { display: grid; gap: 26px; }
+  .info-card {
+    padding: 26px;
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+  }
+  .info-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+  }
+  .address {
+    color: var(--ink-dim);
+    font-style: normal;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .address strong { color: var(--ink); font-weight: 500; }
+
+  .hours {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .hours li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--line);
+    font-size: 0.92rem;
+  }
+  .hours li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .hours .day { color: var(--ink-dim); letter-spacing: 0.06em; }
+  .hours .time { color: var(--ink); font-family: var(--serif); font-size: 1.1rem; white-space: nowrap; flex-shrink: 0; }
+  .hours li.closed .time { color: var(--ink-mute); font-style: italic; font-size: 1rem; }
+
+  /* ---------- CTA strip ---------- */
+  .cta-strip {
+    padding: 70px 0;
+    text-align: center;
+    background:
+      linear-gradient(rgba(var(--bg-rgb),0.85), rgba(var(--bg-rgb),0.85)),
+      repeating-linear-gradient(135deg, var(--gold-deep) 0 2px, var(--bg) 2px 14px);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .cta-strip h2 {
+    font-family: var(--script);
+    font-style: normal;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 12px;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .cta-strip p {
+    color: var(--ink-dim);
+    margin: 0 0 28px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: transparent;
+    padding: 70px 0 30px;
+    border-top: 1px solid var(--line);
+  }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    margin-bottom: 50px;
+  }
+  .foot-brand .brand-name { font-size: 1.5rem; }
+  .foot-brand p {
+    color: var(--ink-dim);
+    font-size: 0.92rem;
+    margin: 14px 0 0;
+    max-width: 32ch;
+  }
+  .foot-col h4 {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 18px;
+    font-weight: 600;
+  }
+  .foot-col ul {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; gap: 10px;
+  }
+  .foot-col a {
+    color: var(--ink-dim);
+    font-size: 0.92rem;
+    transition: color .2s;
+  }
+  .foot-col a:hover { color: var(--gold); }
+
+  .foot-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    text-align: center;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+  }
+  .foot-bottom .heart { color: var(--gold); }
+
+  /* ---------- Floating WhatsApp ---------- */
+  .whats-fab {
+    position: fixed;
+    bottom: 22px; right: 22px;
+    z-index: 60;
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: var(--whats);
+    color: #fff;
+    display: grid; place-items: center;
+    box-shadow:
+      0 12px 30px rgba(37,211,102,0.35),
+      0 0 0 0 rgba(37,211,102,0.4);
+    transition: transform .2s, box-shadow .3s;
+    animation: fabPulse 2.6s ease-out infinite;
+  }
+  .whats-fab:hover { transform: translateY(-2px) scale(1.04); }
+  .whats-fab svg { width: 28px; height: 28px; }
+  @keyframes fabPulse {
+    0% { box-shadow: 0 12px 30px rgba(37,211,102,0.35), 0 0 0 0 rgba(37,211,102,0.5); }
+    70% { box-shadow: 0 12px 30px rgba(37,211,102,0.35), 0 0 0 22px rgba(37,211,102,0); }
+    100% { box-shadow: 0 12px 30px rgba(37,211,102,0.35), 0 0 0 0 rgba(37,211,102,0); }
+  }
+  .whats-fab .tip {
+    position: absolute;
+    right: 68px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-3);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 8px 14px;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s, transform .2s;
+  }
+  .whats-fab:hover .tip { opacity: 1; transform: translateY(-50%) translateX(-4px); }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---------- Breakpoints ---------- */
+  @media (min-width: 640px) {
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 860px) {
+    .nav-links { display: flex; }
+    .nav-cta { display: inline-flex; }
+    .nav-burger { display: none; }
+    .hero-inner { grid-template-columns: 1.1fr 0.9fr; gap: 70px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-grid { grid-template-columns: repeat(3, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+    .location-grid { grid-template-columns: 1.2fr 1fr; align-items: start; }
+    .foot-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 50px; }
+    .foot-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
+    section { padding: 110px 0; }
+  }
+  @media (min-width: 1020px) {
+    body { font-size: 17px; }
+  }
+
+  /* ---------- Theme toggle ---------- */
+  .theme-toggle {
+    width: 38px; height: 38px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink-dim);
+    cursor: pointer;
+    display: none;
+    place-items: center;
+    transition: border-color .2s, color .2s, background .2s;
+    position: relative;
+    flex-shrink: 0;
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1;
+  }
+  .mobile-menu .theme-toggle { display: grid; }
+  @media (min-width: 860px) {
+    .nav-inner > .theme-toggle { display: grid; }
+    .nav-inner { gap: 18px; }
+  }
+  .theme-toggle:hover { border-color: var(--gold); color: var(--gold); }
+  .theme-toggle .ico-light, .theme-toggle .ico-dark { display: none; }
+  :root[data-theme="light"] .theme-toggle .ico-dark { display: inline; }
+  :root:not([data-theme="light"]) .theme-toggle .ico-light { display: inline; }
+  .mobile-menu .theme-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .mobile-menu .theme-toggle-row span {
+    font-size: 0.92rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* Light-mode-specific tweaks where tokens alone aren't enough */
+  :root[data-theme="light"] .nav {
+    box-shadow: 0 1px 0 transparent;
+  }
+  :root[data-theme="light"] .nav.scrolled {
+    box-shadow: 0 1px 0 var(--line);
+  }
+  :root[data-theme="light"] .btn-ghost {
+    color: var(--ink);
+  }
+  :root[data-theme="light"] .ph::before {
+    background-image: repeating-linear-gradient(
+      var(--angle, 45deg),
+      rgba(var(--accent-rgb), 0.18) 0 1px,
+      transparent 1px 14px
+    );
+  }
+  :root[data-theme="light"] .hero-visual::before {
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(var(--accent-rgb), 0.16) 0 1px,
+      transparent 1px 18px
+    );
+  }
+  :root[data-theme="light"] .avatar::before {
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(var(--accent-rgb), 0.18) 0 1px,
+      transparent 1px 10px
+    );
+  }
+  :root[data-theme="light"] .map::before {
+    background-image:
+      linear-gradient(rgba(var(--accent-rgb), 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--accent-rgb), 0.16) 1px, transparent 1px);
+  }
+  :root[data-theme="light"] .demo-badge {
+    background: var(--bg-2);
+  }
+  :root[data-theme="light"] .whats-fab {
+    box-shadow:
+      0 12px 30px rgba(37,211,102,0.4),
+      0 0 0 0 rgba(37,211,102,0.4);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  /* =========================================================
+     BOOKING OVERLAY (mocked interactive prototype)
+     ========================================================= */
+  .bk-overlay {
+    position: fixed; inset: 0;
+    z-index: 100;
+    background: rgba(6,5,4,0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .25s, visibility .25s;
+  }
+  .bk-overlay.open { opacity: 1; visibility: visible; }
+  .bk-sheet {
+    width: 100%;
+    max-width: 540px;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    overflow: hidden;
+    transform: translateY(16px);
+    transition: transform .3s ease;
+  }
+  .bk-overlay.open .bk-sheet { transform: none; }
+  @media (min-width: 720px) {
+    .bk-overlay { padding: 28px; align-items: center; }
+    .bk-sheet {
+      max-height: min(820px, 95vh);
+      border: 1px solid var(--line);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    }
+  }
+
+  .bk-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+    background: var(--bg);
+  }
+  .bk-iconbtn {
+    width: 36px; height: 36px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink-dim);
+    cursor: pointer;
+    display: grid; place-items: center;
+    transition: border-color .2s, color .2s, background .2s;
+    flex-shrink: 0;
+  }
+  .bk-iconbtn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(var(--accent-rgb), 0.06);
+  }
+  .bk-iconbtn:active { opacity: 0.7; }
+  .bk-head .tit {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .bk-stepper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 20px 22px 4px;
+    flex-shrink: 0;
+  }
+  .bk-stepper .node {
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line);
+    display: grid; place-items: center;
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--ink-mute);
+    transition: all .25s;
+    background: var(--bg);
+  }
+  .bk-stepper .node.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--on-accent);
+    font-weight: 600;
+  }
+  .bk-stepper .node.done {
+    background: transparent;
+    border-color: var(--gold-deep);
+    color: var(--gold);
+  }
+  .bk-stepper .node.done span { font-size: 0; }
+  .bk-stepper .node.done::after {
+    content: "✓";
+    font-family: var(--sans);
+    font-size: 12px;
+  }
+  .bk-stepper .bar {
+    flex: 1; height: 1px;
+    background: var(--line);
+    transition: background .3s;
+  }
+  .bk-stepper .bar.done { background: var(--gold-deep); }
+
+  .bk-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px 22px 26px;
+    display: flex;
+    flex-direction: column;
+  }
+  .bk-body h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.95rem;
+    margin: 6px 0 6px;
+    line-height: 1.1;
+  }
+  .bk-body .lead {
+    color: var(--ink-dim);
+    font-size: 0.92rem;
+    margin: 0 0 22px;
+  }
+
+  .bk-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+  .bk-field label {
+    font-family: var(--sans);
+    font-size: 0.66rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+  .bk-field input {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: 13px 14px;
+    font-family: var(--sans);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color .2s, background .2s;
+  }
+  .bk-field input:focus { border-color: var(--gold); }
+  .bk-field.error input { border-color: var(--warn); background: var(--warn-soft); }
+  .bk-field .err {
+    color: var(--warn);
+    font-size: 0.78rem;
+    display: flex; align-items: center; gap: 6px;
+    margin-top: 2px;
+  }
+  .bk-field .err::before {
+    content: "!";
+    display: inline-grid; place-items: center;
+    width: 14px; height: 14px;
+    border: 1px solid var(--warn);
+    color: var(--warn);
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 1;
+  }
+  .bk-field .help { color: var(--ink-mute); font-size: 0.78rem; }
+
+  .bk-foot {
+    padding: 14px 18px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+    flex-shrink: 0;
+    display: flex;
+    gap: 10px;
+  }
+  .bk-foot .btn { flex: 1; padding: 14px 18px; font-size: 0.78rem; }
+  .bk-foot .btn-ghost { flex: 0 0 auto; }
+  @media (max-width: 380px) {
+    .bk-foot .btn { padding: 14px 12px; letter-spacing: 0.18em; }
+  }
+
+  /* Banner / Toast */
+  .bk-banner {
+    background: var(--warn-soft);
+    border: 1px solid var(--warn);
+    color: var(--warn);
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    margin-bottom: 16px;
+    display: flex; gap: 10px; align-items: flex-start;
+    line-height: 1.45;
+  }
+  .bk-banner::before {
+    content: "!";
+    display: inline-grid; place-items: center;
+    width: 16px; height: 16px;
+    border: 1px solid var(--warn);
+    font-weight: 700; font-size: 10px;
+    flex-shrink: 0; margin-top: 1px;
+  }
+
+  .bk-toast {
+    position: fixed;
+    bottom: 100px; left: 50%;
+    transform: translateX(-50%) translateY(12px);
+    z-index: 110;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: 12px 20px;
+    font-size: 0.86rem;
+    opacity: 0;
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    max-width: 86%;
+  }
+  .bk-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  .bk-toast.warn { border-color: var(--warn); color: var(--warn); }
+  .bk-toast.ok { border-color: var(--ok); color: var(--ok); }
+
+  /* Service grid */
+  .bk-svc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .bk-svc-card {
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+    padding: 16px 14px 14px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    transition: border-color .2s, background .2s;
+    min-height: 122px;
+  }
+  .bk-svc-card:hover { border-color: var(--gold-deep); }
+  .bk-svc-card.selected {
+    border-color: var(--gold);
+    background: var(--bg-3);
+  }
+  .bk-svc-card .roman {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .bk-svc-card .nm {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--ink);
+    line-height: 1.05;
+  }
+  .bk-svc-card .pr {
+    margin-top: auto;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+  }
+  .bk-svc-card .check {
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--on-accent);
+    display: grid; place-items: center;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity .2s;
+    font-weight: 700;
+  }
+  .bk-svc-card.selected .check { opacity: 1; }
+
+  /* Barbers */
+  .bk-barbers { display: flex; flex-direction: column; gap: 10px; }
+  .bk-barber {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .bk-barber:hover { border-color: var(--gold-deep); }
+  .bk-barber.selected { border-color: var(--gold); background: var(--bg-3); }
+  .bk-barber.no-pref { border-style: dashed; }
+  .bk-barber .av {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-deep);
+    display: grid; place-items: center;
+    font-family: var(--serif);
+    color: var(--gold);
+    background: var(--bg);
+    flex-shrink: 0;
+    font-size: 0.95rem;
+  }
+  .bk-barber.no-pref .av { border-style: dashed; color: var(--ink-dim); }
+  .bk-barber .info { flex: 1; min-width: 0; }
+  .bk-barber .nm {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 1.1;
+  }
+  .bk-barber .meta {
+    font-size: 0.78rem;
+    color: var(--ink-dim);
+    margin-top: 4px;
+  }
+  .bk-barber .radio {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line);
+    flex-shrink: 0;
+    position: relative;
+  }
+  .bk-barber.selected .radio { border-color: var(--gold); }
+  .bk-barber.selected .radio::after {
+    content: ""; position: absolute; inset: 3px;
+    border-radius: 50%; background: var(--gold);
+  }
+
+  /* Calendar */
+  .bk-cal {
+    border: 1px solid var(--line);
+    padding: 14px;
+    background: var(--bg-2);
+    margin-bottom: 16px;
+  }
+  .bk-cal-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .bk-cal-head .month {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
+  }
+  .bk-cal-head .month::first-letter { text-transform: uppercase; }
+  .bk-cal-head button {
+    width: 30px; height: 30px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    font-size: 16px;
+    transition: border-color .2s, color .2s;
+  }
+  .bk-cal-head button:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+  .bk-cal-head button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .bk-cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px;
+  }
+  .bk-cal-grid .dh {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    text-align: center;
+    padding: 2px 0 8px;
+  }
+  .bk-cal-grid .d {
+    aspect-ratio: 1;
+    display: grid; place-items: center;
+    font-family: var(--sans);
+    font-size: 0.86rem;
+    color: var(--ink);
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all .15s;
+  }
+  .bk-cal-grid .d:hover:not(.disabled):not(.sel):not(.empty) { border-color: var(--line); color: var(--gold); }
+  .bk-cal-grid .d.empty { visibility: hidden; }
+  .bk-cal-grid .d.disabled { color: var(--ink-mute); opacity: 0.35; cursor: not-allowed; }
+  .bk-cal-grid .d.sel {
+    background: var(--gold);
+    color: var(--on-accent);
+    border-color: var(--gold);
+    font-weight: 600;
+  }
+  .bk-cal-grid .d.today { border-color: var(--gold-deep); }
+
+  /* Slots */
+  .bk-section-label {
+    font-family: var(--sans);
+    font-size: 0.66rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin: 12px 0 10px;
+    font-weight: 500;
+  }
+  .bk-slots {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  }
+  .bk-slot {
+    height: 42px;
+    display: grid; place-items: center;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+    color: var(--ink);
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .bk-slot:hover:not(.taken):not(.sel) { border-color: var(--gold-deep); color: var(--gold); }
+  .bk-slot.taken {
+    background:
+      repeating-linear-gradient(135deg, rgba(var(--ink-rgb),0.05) 0 4px, transparent 4px 8px),
+      var(--bg-2);
+    color: var(--ink-mute);
+    cursor: not-allowed;
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+  }
+  .bk-slot.sel {
+    background: var(--gold);
+    color: var(--on-accent);
+    border-color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* Summary */
+  .bk-sum {
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+    padding: 2px 18px;
+    margin-bottom: 14px;
+  }
+  .bk-sum-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--line);
+    gap: 14px;
+  }
+  .bk-sum-row:last-of-type { border-bottom: 0; }
+  .bk-sum-row .k {
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute);
+  }
+  .bk-sum-row .vwrap { display: flex; align-items: baseline; gap: 12px; text-align: right; }
+  .bk-sum-row .v {
+    font-family: var(--serif); font-size: 1.1rem; color: var(--ink);
+    line-height: 1.2;
+  }
+  .bk-sum-row .edit {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    color: var(--gold);
+    text-transform: uppercase;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  .bk-sum-row .edit:hover { text-decoration: underline; }
+  .bk-sum-total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 16px 0 8px;
+    border-top: 1px solid var(--gold-deep);
+    margin-top: 4px;
+  }
+  .bk-sum-total .k {
+    font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-dim);
+  }
+  .bk-sum-total .v {
+    font-family: var(--serif); font-size: 1.7rem; color: var(--gold);
+  }
+
+  /* Success screen */
+  .bk-success { text-align: center; padding: 26px 0 10px; }
+  .bk-success .seal {
+    width: 86px; height: 86px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    display: grid; place-items: center;
+    color: var(--gold);
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    position: relative;
+  }
+  .bk-success .seal::before, .bk-success .seal::after {
+    content: ""; position: absolute;
+    border-radius: 50%; border: 1px solid var(--gold-deep);
+    opacity: 0.45;
+  }
+  .bk-success .seal::before { inset: -8px; }
+  .bk-success .seal::after { inset: -16px; opacity: 0.22; }
+  .bk-success h3 { font-size: 2.1rem; margin-bottom: 8px; }
+  .bk-success .conf-id {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.74rem;
+    color: var(--gold);
+    letter-spacing: 0.24em;
+    margin: 6px 0 18px;
+  }
+  .bk-success .actions {
+    margin-top: 26px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+
+  /* Appointment list */
+  .bk-apt-list { display: flex; flex-direction: column; gap: 12px; }
+  .bk-apt {
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .bk-apt.muted { opacity: 0.6; }
+  .bk-apt .top {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+  }
+  .bk-apt .when {
+    font-family: var(--serif); font-size: 1.2rem; color: var(--ink); line-height: 1.15;
+  }
+  .bk-apt .badge {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border: 1px solid var(--line);
+    color: var(--ink-dim);
+    white-space: nowrap;
+  }
+  .bk-apt .badge.ok { border-color: var(--ok); color: var(--ok); }
+  .bk-apt .badge.warn { border-color: var(--warn); color: var(--warn); }
+  .bk-apt .who { font-size: 0.86rem; color: var(--ink-dim); }
+  .bk-apt .acts {
+    display: flex; gap: 8px; margin-top: 6px;
+  }
+  .bk-apt .acts button {
+    flex: 1; height: 38px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-dim);
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .bk-apt .acts button:hover { border-color: var(--gold); color: var(--gold); }
+  .bk-apt .acts button.danger { border-color: var(--line); color: var(--ink-dim); }
+  .bk-apt .acts button.danger:hover { background: var(--warn-soft); border-color: var(--warn); color: var(--warn); }
+
+  /* Empty state */
+  .bk-empty {
+    text-align: center;
+    padding: 32px 20px;
+    border: 1px dashed var(--line);
+    background: var(--bg-2);
+    margin: 16px 0;
+  }
+  .bk-empty .ico {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    color: var(--ink-mute);
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+  .bk-empty h4 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    margin: 8px 0 6px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .bk-empty p {
+    font-size: 0.88rem; color: var(--ink-dim); margin: 0 0 18px;
+  }
+  .bk-empty .btn { display: inline-flex; }
+
+  /* Subtle consult link below hero CTAs */
+  .hero-microlink {
+    display: inline-block;
+    margin-top: 22px;
+    font-size: 0.82rem;
+    color: var(--ink-dim);
+    border-bottom: 1px dashed var(--gold-deep);
+    padding-bottom: 2px;
+    transition: color .2s, border-color .2s;
+  }
+  .hero-microlink:hover { color: var(--gold); border-color: var(--gold); }
+  .hero-microlink strong { color: var(--gold); font-weight: 500; }
+
+  /* Mocked-prototype hint badge */
+  .demo-badge {
+    position: fixed;
+    top: 80px; left: 12px;
+    z-index: 49;
+    background: var(--bg-3);
+    border: 1px solid var(--gold-deep);
+    color: var(--gold);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    pointer-events: none;
+    opacity: 0.9;
+  }
+  @media (min-width: 720px) {
+    .demo-badge { top: 86px; left: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand" aria-label="Raimundos Barbearia">
+      <img class="brand-logo" src="assets/logo.jpg" alt="" />
+      <span class="brand-name">Raimundos Barbearia</span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#equipe">Equipe</a></li>
+        <li><a href="#localizacao">Encontre-nos</a></li>
+        <li><a href="#" data-bk="consult">Meus agendamentos</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-gold nav-cta" href="https://agendas.link/barbeariaraimundos" target="_blank" rel="noopener" data-bk="start">Agendar <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
+      <span class="ico-light" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+      <span class="ico-dark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+    </button>
+    <button class="nav-burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#equipe">Equipe</a></li>
+      <li><a href="#localizacao">Encontre-nos</a></li>
+      <li><a href="#" data-bk="consult">Meus agendamentos</a></li>
+      <li>
+        <div class="theme-toggle-row">
+          <span>Tema</span>
+          <button class="theme-toggle" id="themeToggleMobile" aria-label="Alternar tema claro/escuro">
+            <span class="ico-light" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+            <span class="ico-dark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+          </button>
+        </div>
+      </li>
+      <li><a class="btn btn-gold" href="https://agendas.link/barbeariaraimundos" target="_blank" rel="noopener" data-bk="start">Agendar agora <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<main id="top">
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">Barbearia · Tradição & Estilo</span>
+        <h1>Raimundos<br /><span class="accent">Barbearia</span></h1>
+        <p class="hero-tag">"O lugar onde estilo e autoestima se encontram."</p>
+        <div class="hero-ctas">
+          <a class="btn btn-gold" href="https://agendas.link/barbeariaraimundos" target="_blank" rel="noopener" data-bk="start">
+            Agendar agora <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
+        </div>
+        <a href="#" class="hero-microlink" data-bk="consult">Já tem horário marcado? <strong>Consultar &amp; cancelar</strong></a>
+        <div class="hero-meta">
+          <div>
+            <div class="k">12+</div>
+            <div class="v">Anos de ofício</div>
+          </div>
+          <div>
+            <div class="k">3</div>
+            <div class="v">Barbeiros</div>
+          </div>
+          <div>
+            <div class="k">5★</div>
+            <div class="v">Avaliação local</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" aria-hidden="true">
+        <span class="frame-corner tl"></span>
+        <span class="frame-corner tr"></span>
+        <span class="frame-corner bl"></span>
+        <span class="frame-corner br"></span>
+        <img class="hero-logo" src="assets/logo.jpg" alt="Logo Raimundos Barbearia" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVIÇOS ========== -->
+<section class="services" id="servicos">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Cardápio</span>
+      <h2 class="section-title">Nossos serviços</h2>
+      <div class="divider"><span></span></div>
+      <p class="section-sub">Cortes clássicos, barbas alinhadas e cuidado de verdade. Atendimento sob hora marcada.</p>
+    </div>
+
+    <div class="services-grid reveal">
+      <article class="svc">
+        <div class="svc-num">I</div>
+        <div class="svc-body">
+          <h3>Corte</h3>
+          <p>Máquina, tesoura e finalização. Para todos os tipos de cabelo.</p>
+        </div>
+        <div class="svc-price">R$ 45<small>~ 40 min</small></div>
+      </article>
+
+      <article class="svc">
+        <div class="svc-num">II</div>
+        <div class="svc-body">
+          <h3>Barba</h3>
+          <p>Toalha quente, navalha e óleo finalizador. Pele descansada.</p>
+        </div>
+        <div class="svc-price">R$ 35<small>~ 30 min</small></div>
+      </article>
+
+      <article class="svc">
+        <div class="svc-num">III</div>
+        <div class="svc-body">
+          <h3>Combo</h3>
+          <p>Corte + barba completa. Nosso ritual mais pedido.</p>
+        </div>
+        <div class="svc-price">R$ 70<small>~ 60 min</small></div>
+      </article>
+
+      <article class="svc">
+        <div class="svc-num">IV</div>
+        <div class="svc-body">
+          <h3>Sobrancelha</h3>
+          <p>Acabamento na navalha, traço limpo e natural.</p>
+        </div>
+        <div class="svc-price">R$ 20<small>~ 15 min</small></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GALERIA ========== -->
+<section id="galeria">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Trabalhos</span>
+      <h2 class="section-title">Galeria</h2>
+      <div class="divider"><span></span></div>
+      <p class="section-sub">Um recorte dos cortes, fades e barbas feitos por aqui.</p>
+    </div>
+
+    <div class="gallery-grid reveal">
+      <figure class="ph" data-label="CORTE · FADE" style="--angle: 30deg"><span class="corner tl"></span><span class="corner br"></span></figure>
+      <figure class="ph" data-label="BARBA · DESENHO" style="--angle: 60deg"><span class="corner tl"></span><span class="corner br"></span></figure>
+      <figure class="ph" data-label="CLÁSSICO" style="--angle: 90deg"><span class="corner tl"></span><span class="corner br"></span></figure>
+      <figure class="ph" data-label="POMPADOUR" style="--angle: 120deg"><span class="corner tl"></span><span class="corner br"></span></figure>
+      <figure class="ph" data-label="MAQUINÁRIO" style="--angle: 45deg"><span class="corner tl"></span><span class="corner br"></span></figure>
+      <figure class="ph" data-label="CADEIRAS" style="--angle: 75deg"><span class="corner tl"></span><span class="corner br"></span></figure>
+      <figure class="ph" data-label="DETALHE" style="--angle: 105deg"><span class="corner tl"></span><span class="corner br"></span></figure>
+      <figure class="ph" data-label="AMBIENTE" style="--angle: 135deg"><span class="corner tl"></span><span class="corner br"></span></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EQUIPE ========== -->
+<section class="team" id="equipe">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Mestres da navalha</span>
+      <h2 class="section-title">Nossa equipe</h2>
+      <div class="divider"><span></span></div>
+      <p class="section-sub">Profissionais formados, atualizados e apaixonados pelo ofício.</p>
+    </div>
+
+    <div class="team-grid reveal">
+      <article class="barber">
+        <div class="avatar"><span class="initials">RM</span></div>
+        <h3>Raimundo</h3>
+        <div class="role">Master Barber · Fundador</div>
+        <p class="bio">12 anos de oficina. Especialista em cortes clássicos e barba na navalha.</p>
+      </article>
+
+      <article class="barber">
+        <div class="avatar"><span class="initials">LV</span></div>
+        <h3>Lucas Vieira</h3>
+        <div class="role">Barbeiro · Fades</div>
+        <p class="bio">Texturização, fades milimétricos e estilos modernos. Quinta a sábado.</p>
+      </article>
+
+      <article class="barber">
+        <div class="avatar"><span class="initials">TF</span></div>
+        <h3>Téo Ferraz</h3>
+        <div class="role">Barbeiro · Barba</div>
+        <p class="bio">Especialista em desenho, alinhamento e cuidados com a barba longa.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LOCALIZAÇÃO ========== -->
+<section id="localizacao">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Visite-nos</span>
+      <h2 class="section-title">Onde nos encontrar</h2>
+      <div class="divider"><span></span></div>
+      <p class="section-sub">Centro da cidade, fácil acesso e estacionamento na esquina.</p>
+    </div>
+
+    <div class="location-grid reveal">
+      <div class="map" aria-hidden="true">
+        <div class="map-pin">
+          <div class="dot"></div>
+          <div class="label">Raimundos</div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-card">
+          <h3>Endereço</h3>
+          <address class="address">
+            <strong>Rua das Tesouras, 132</strong><br />
+            Centro Histórico · Lajeado/RS<br />
+            CEP 95900-000
+          </address>
+        </div>
+
+        <div class="info-card">
+          <h3>Horários</h3>
+          <ul class="hours">
+            <li><span class="day">Segunda</span><span class="time">09:00 — 19:00</span></li>
+            <li><span class="day">Terça</span><span class="time">09:00 — 19:00</span></li>
+            <li><span class="day">Quarta</span><span class="time">09:00 — 19:00</span></li>
+            <li><span class="day">Quinta</span><span class="time">09:00 — 20:00</span></li>
+            <li><span class="day">Sexta</span><span class="time">09:00 — 20:00</span></li>
+            <li><span class="day">Sábado</span><span class="time">08:00 — 17:00</span></li>
+            <li class="closed"><span class="day">Domingo</span><span class="time">Fechado</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ========== CTA STRIP ========== -->
+<section class="cta-strip">
+  <div class="container reveal">
+    <span class="eyebrow">Pronto pra próxima cadeira?</span>
+    <h2>Garanta seu horário em segundos.</h2>
+    <p>Agenda online, confirmação na hora.</p>
+    <a class="btn btn-gold" href="https://agendas.link/barbeariaraimundos" target="_blank" rel="noopener" data-bk="start">Agendar agora <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand">
+          <img class="brand-logo" src="assets/logo.jpg" alt="" />
+          <span class="brand-name">Raimundos <b>·</b> Barbearia</span>
+        </div>
+        <p>O lugar onde estilo e autoestima se encontram. Tradição, navalha e bom papo desde 2013.</p>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5551995282892" target="_blank" rel="noopener">WhatsApp · +55 51 99528-2892</a></li>
+          <li><a href="https://instagram.com/raimundosbarbearia" target="_blank" rel="noopener">Instagram · @raimundosbarbearia</a></li>
+          <li><a href="https://agendas.link/barbeariaraimundos" target="_blank" rel="noopener">Agendamento online</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Navegar</h4>
+        <ul>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#equipe">Equipe</a></li>
+          <li><a href="#localizacao">Endereço</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Endereço</h4>
+        <ul>
+          <li>Rua das Tesouras, 132</li>
+          <li>Centro · Lajeado/RS</li>
+          <li>Seg–Sáb · 09h às 19h</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© 2026 Raimundos Barbearia · Todos os direitos reservados</div>
+      <div>Feito <span class="heart">◆</span> com cuidado em Lajeado/RS</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== Booking overlay (mocked prototype) ========== -->
+<div class="demo-badge">Protótipo · dados mockados</div>
+<div class="bk-overlay" id="bkOverlay" role="dialog" aria-modal="true" aria-label="Agendamento">
+  <div class="bk-sheet" id="bkSheet"></div>
+</div>
+
+<!-- ========== WhatsApp FAB ========== -->
+<a class="whats-fab" href="https://wa.me/5551995282892" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <span class="tip">Fale conosco</span>
+  <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+    <path d="M16 3C8.82 3 3 8.82 3 16c0 2.29.6 4.5 1.74 6.46L3 29l6.7-1.74A12.94 12.94 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.6c-1.95 0-3.84-.51-5.5-1.49l-.39-.23-3.98 1.03 1.06-3.87-.25-.4A10.55 10.55 0 0 1 5.4 16C5.4 10.15 10.15 5.4 16 5.4S26.6 10.15 26.6 16 21.85 26.6 16 26.6zm6.07-7.93c-.33-.17-1.96-.97-2.26-1.08-.3-.11-.52-.17-.74.17-.22.33-.85 1.08-1.04 1.3-.19.22-.39.25-.72.08-.33-.17-1.39-.51-2.65-1.64-.98-.87-1.64-1.95-1.83-2.28-.19-.33-.02-.51.14-.68.14-.14.33-.39.5-.58.16-.19.22-.33.33-.55.11-.22.06-.41-.03-.58-.08-.17-.74-1.78-1.01-2.44-.27-.65-.54-.56-.74-.57h-.63c-.22 0-.58.08-.88.41-.3.33-1.16 1.13-1.16 2.76 0 1.62 1.18 3.19 1.35 3.41.17.22 2.33 3.55 5.65 4.98.79.34 1.4.54 1.88.69.79.25 1.51.21 2.08.13.63-.09 1.96-.8 2.24-1.57.28-.77.28-1.43.19-1.57-.09-.14-.3-.22-.63-.39z"/>
+  </svg>
+</a>
+
+<script>
+  // -------- Nav scroll state
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 8) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // -------- Mobile menu
+  const burger = document.getElementById('burger');
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.querySelectorAll('#mobileMenu a').forEach(a =>
+    a.addEventListener('click', () => {
+      nav.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    })
+  );
+
+  // -------- Theme toggle
+  (function() {
+    const KEY = 'raimundos:theme';
+    function current() {
+      return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    }
+    function set(theme) {
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+      else document.documentElement.removeAttribute('data-theme');
+      try { localStorage.setItem(KEY, theme); } catch(e) {}
+    }
+    function toggle() {
+      set(current() === 'light' ? 'dark' : 'light');
+    }
+    document.querySelectorAll('#themeToggle, #themeToggleMobile').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggle();
+      });
+    });
+  })();
+
+  // -------- Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* =========================================================
+     BOOKING FLOW (mocked interactive prototype)
+     ========================================================= */
+  (function() {
+    const SERVICES = [
+      { id: 'corte', name: 'Corte', price: 45, duration: 40, roman: 'I' },
+      { id: 'barba', name: 'Barba', price: 35, duration: 30, roman: 'II' },
+      { id: 'combo', name: 'Combo', price: 70, duration: 60, roman: 'III' },
+      { id: 'sobrancelha', name: 'Sobrancelha', price: 20, duration: 15, roman: 'IV' },
+    ];
+    const BARBERS = [
+      { id: 'any', name: 'Sem preferência', meta: 'Próximo barbeiro disponível', initials: '?' },
+      { id: 'raimundo', name: 'Raimundo', meta: 'Master · Clássicos & navalha', initials: 'RM' },
+      { id: 'lucas', name: 'Lucas Vieira', meta: 'Fades & estilos modernos', initials: 'LV' },
+      { id: 'teo', name: 'Téo Ferraz', meta: 'Especialista em barba', initials: 'TF' },
+    ];
+    const SLOTS = ['09:00','09:40','10:20','11:00','11:40','14:00','14:40','15:20','16:00','16:40','17:20','18:00'];
+    const KEY_USER = 'raimundos:user';
+    const KEY_APTS = 'raimundos:appointments';
+
+    const $overlay = document.getElementById('bkOverlay');
+    const $sheet = document.getElementById('bkSheet');
+
+    const state = {
+      screen: 'step1',
+      data: { name: '', whatsapp: '', service: null, barber: null, date: null, time: null },
+      errors: {},
+      consultPhone: '',
+      consultResults: null,
+      consultError: false,
+      pendingCancelId: null,
+      lastApt: null,
+      calMonth: null,
+      _serverTry: 0,
+    };
+
+    // ---- storage
+    function loadUser() {
+      try { return JSON.parse(localStorage.getItem(KEY_USER) || 'null'); } catch(e) { return null; }
+    }
+    function saveUser(u) { localStorage.setItem(KEY_USER, JSON.stringify(u)); }
+    function loadApts() {
+      try { return JSON.parse(localStorage.getItem(KEY_APTS) || '[]'); } catch(e) { return []; }
+    }
+    function saveApts(arr) { localStorage.setItem(KEY_APTS, JSON.stringify(arr)); }
+    function pushApt(a) { const all = loadApts(); all.push(a); saveApts(all); }
+    function patchApt(id, patch) {
+      const all = loadApts();
+      const i = all.findIndex(a => a.id === id);
+      if (i >= 0) { all[i] = Object.assign({}, all[i], patch); saveApts(all); }
+    }
+
+    // load saved identity
+    const savedUser = loadUser();
+    if (savedUser) { state.data.name = savedUser.name || ''; state.data.whatsapp = savedUser.whatsapp || ''; }
+
+    // ---- helpers
+    function esc(s) {
+      if (s == null) return '';
+      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+    function fmtPhone(v) {
+      const d = String(v||'').replace(/\D/g, '').slice(0, 11);
+      if (!d) return '';
+      if (d.length <= 2) return '(' + d;
+      if (d.length <= 7) return '(' + d.slice(0,2) + ') ' + d.slice(2);
+      return '(' + d.slice(0,2) + ') ' + d.slice(2,7) + '-' + d.slice(7);
+    }
+    function digits(v) { return String(v||'').replace(/\D/g, ''); }
+    function startOfMonth(d) { return new Date(d.getFullYear(), d.getMonth(), 1); }
+    function fmtDate(d) {
+      return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    }
+    function parseDate(s) {
+      const [y,m,d] = s.split('-').map(Number);
+      return new Date(y, m-1, d);
+    }
+    function dateLabel(s) {
+      const d = parseDate(s);
+      const wd = d.toLocaleDateString('pt-BR', { weekday: 'short' }).replace('.', '');
+      const dm = d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' }).replace('.', '');
+      return wd + ', ' + dm;
+    }
+    function dateLabelLong(s) {
+      const d = parseDate(s);
+      return d.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
+    }
+    function genId() {
+      return Math.random().toString(36).slice(2, 7).toUpperCase();
+    }
+
+    // deterministic taken slots per date
+    function isSlotTaken(date, slotIdx) {
+      // collide with already-booked confirmed slots first
+      const taken = loadApts().some(a => a.status === 'confirmed' && a.date === date && a.time === SLOTS[slotIdx]);
+      if (taken) return true;
+      let h = 0;
+      const k = date + '#' + slotIdx;
+      for (let i = 0; i < k.length; i++) h = (h * 31 + k.charCodeAt(i)) | 0;
+      return Math.abs(h) % 5 === 0; // ~20%
+    }
+    function isFutureApt(a) {
+      if (a.status === 'cancelled') return false;
+      const dt = parseDate(a.date);
+      const [h,m] = a.time.split(':').map(Number);
+      dt.setHours(h, m, 0, 0);
+      return dt >= new Date();
+    }
+
+    // ---- validation
+    function validateStep1() {
+      const errs = {};
+      if ((state.data.name||'').trim().length < 2) errs.name = 'Digite seu nome para continuar.';
+      if (digits(state.data.whatsapp).length < 11) errs.whatsapp = 'Número incompleto — digite os 11 dígitos com DDD.';
+      state.errors = errs;
+      return Object.keys(errs).length === 0;
+    }
+
+    // ---- toast
+    function toast(msg, kind) {
+      let t = document.getElementById('bkToast');
+      if (!t) {
+        t = document.createElement('div');
+        t.id = 'bkToast';
+        t.className = 'bk-toast';
+        document.body.appendChild(t);
+      }
+      t.className = 'bk-toast' + (kind ? ' ' + kind : '');
+      t.textContent = msg;
+      requestAnimationFrame(() => t.classList.add('show'));
+      clearTimeout(t._tm);
+      t._tm = setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // ---- stepper
+    function stepperHTML(active) {
+      let out = '';
+      for (let n = 1; n <= 5; n++) {
+        const cls = n < active ? 'done' : (n === active ? 'active' : '');
+        out += '<div class="node ' + cls + '"><span>' + n + '</span></div>';
+        if (n < 5) out += '<div class="bar' + (n < active ? ' done' : '') + '"></div>';
+      }
+      return out;
+    }
+
+    // ---- calendar / slot renderers
+    function renderCalendar() {
+      const month = state.calMonth || (state.calMonth = startOfMonth(new Date()));
+      const y = month.getFullYear(), m = month.getMonth();
+      const startWeekday = new Date(y, m, 1).getDay(); // 0=Sun
+      // Reorder so Monday is first column. Our headers below are S T Q Q S S D (seg-dom).
+      const offset = (startWeekday + 6) % 7;
+      const daysInMonth = new Date(y, m+1, 0).getDate();
+      const today = new Date(); today.setHours(0,0,0,0);
+
+      let cells = '';
+      for (let i = 0; i < offset; i++) cells += '<div class="d empty"></div>';
+      for (let day = 1; day <= daysInMonth; day++) {
+        const d = new Date(y, m, day);
+        const dStr = fmtDate(d);
+        const isSel = state.data.date === dStr;
+        const isToday = +d === +today;
+        const past = d < today;
+        const sunday = d.getDay() === 0;
+        const disabled = past || sunday;
+        const cls = ['d'];
+        if (isSel) cls.push('sel');
+        if (isToday && !isSel) cls.push('today');
+        if (disabled) cls.push('disabled');
+        cells += '<div class="' + cls.join(' ') + '" data-date="' + dStr + '">' + day + '</div>';
+      }
+
+      const monthLabel = month.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+      const prevDisabled = (y < today.getFullYear()) || (y === today.getFullYear() && m <= today.getMonth());
+
+      return ''
+        + '<div class="bk-cal">'
+        +   '<div class="bk-cal-head">'
+        +     '<button data-act="cal-prev" aria-label="Mês anterior"' + (prevDisabled ? ' disabled' : '') + '>‹</button>'
+        +     '<div class="month">' + monthLabel + '</div>'
+        +     '<button data-act="cal-next" aria-label="Próximo mês">›</button>'
+        +   '</div>'
+        +   '<div class="bk-cal-grid">'
+        +     '<div class="dh">S</div><div class="dh">T</div><div class="dh">Q</div><div class="dh">Q</div><div class="dh">S</div><div class="dh">S</div><div class="dh">D</div>'
+        +     cells
+        +   '</div>'
+        + '</div>';
+    }
+
+    function renderSlots() {
+      if (!state.data.date) return '<div class="bk-section-label">Horários</div><p style="color: var(--ink-mute); font-size: 0.86rem; text-align:center; padding: 14px 0;">Escolha um dia para ver os horários.</p>';
+      let html = '<div class="bk-section-label">Horários · ' + dateLabel(state.data.date) + '</div><div class="bk-slots">';
+      for (let i = 0; i < SLOTS.length; i++) {
+        const s = SLOTS[i];
+        const taken = isSlotTaken(state.data.date, i);
+        const sel = !taken && state.data.time === s;
+        const cls = ['bk-slot'];
+        if (taken) cls.push('taken');
+        if (sel) cls.push('sel');
+        html += '<div class="' + cls.join(' ') + '" data-slot="' + s + '">' + s + '</div>';
+      }
+      html += '</div>';
+      return html;
+    }
+
+    // ---- appointment cards
+    function aptCard(a, future) {
+      const s = SERVICES.find(x => x.id === a.service);
+      const b = BARBERS.find(x => x.id === a.barber);
+      const isCancelled = a.status === 'cancelled';
+      let badge = '<span class="badge ok">Confirmado</span>';
+      if (isCancelled) badge = '<span class="badge warn">Cancelado</span>';
+      else if (!future) badge = '<span class="badge">Concluído</span>';
+      return ''
+        + '<div class="bk-apt' + (!future ? ' muted' : '') + '">'
+        +   '<div class="top"><span class="when">' + dateLabel(a.date) + ' · ' + a.time + '</span>' + badge + '</div>'
+        +   '<div class="who">' + s.name + ' · com ' + b.name + ' · R$ ' + s.price + '</div>'
+        +   (future ? '<div class="acts"><button data-act="cancel-apt" data-id="' + a.id + '" class="danger">Cancelar</button></div>' : '')
+        + '</div>';
+    }
+
+    // ---- screen renderers
+    const screens = {
+      step1() {
+        const e = state.errors;
+        return ''
+          + '<div class="bk-stepper">' + stepperHTML(1) + '</div>'
+          + '<div class="bk-body">'
+          +   '<h3>Vamos começar?</h3>'
+          +   '<p class="lead">Só precisamos do seu nome e WhatsApp para confirmar e te lembrar.</p>'
+          +   '<div class="bk-field' + (e.name ? ' error' : '') + '">'
+          +     '<label for="bkName">Nome completo</label>'
+          +     '<input id="bkName" type="text" autocomplete="name" placeholder="Ex.: João Silva" value="' + esc(state.data.name) + '" />'
+          +     (e.name ? '<div class="err">' + e.name + '</div>' : '')
+          +   '</div>'
+          +   '<div class="bk-field' + (e.whatsapp ? ' error' : '') + '">'
+          +     '<label for="bkPhone">WhatsApp</label>'
+          +     '<input id="bkPhone" type="tel" inputmode="tel" placeholder="(51) 99999-9999" value="' + esc(state.data.whatsapp) + '" />'
+          +     (e.whatsapp ? '<div class="err">' + e.whatsapp + '</div>' : '<div class="help">Usaremos para confirmar e enviar lembretes.</div>')
+          +   '</div>'
+          + '</div>'
+          + '<div class="bk-foot">'
+          +   '<button class="btn btn-gold" data-act="next-1">Continuar <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
+          + '</div>';
+      },
+      step2() {
+        const cards = SERVICES.map(s => {
+          const sel = state.data.service === s.id;
+          return '<div class="bk-svc-card' + (sel ? ' selected' : '') + '" data-svc="' + s.id + '">'
+            + '<div class="check">✓</div>'
+            + '<div class="roman">' + s.roman + '</div>'
+            + '<div class="nm">' + s.name + '</div>'
+            + '<div class="pr">R$ ' + s.price + ' · ' + s.duration + 'min</div>'
+            + '</div>';
+        }).join('');
+        return ''
+          + '<div class="bk-stepper">' + stepperHTML(2) + '</div>'
+          + '<div class="bk-body">'
+          +   '<h3>O que vamos fazer?</h3>'
+          +   '<p class="lead">Escolha um serviço para este horário.</p>'
+          +   (state.errors.service ? '<div class="bk-banner">' + state.errors.service + '</div>' : '')
+          +   '<div class="bk-svc-grid">' + cards + '</div>'
+          + '</div>'
+          + '<div class="bk-foot">'
+          +   '<button class="btn btn-ghost" data-act="back">' + ICO_BACK_SM + ' Voltar</button>'
+          +   '<button class="btn btn-gold" data-act="next-2">Continuar <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
+          + '</div>';
+      },
+      step3() {
+        const rows = BARBERS.map(b => {
+          const sel = state.data.barber === b.id;
+          return '<div class="bk-barber' + (sel ? ' selected' : '') + (b.id === 'any' ? ' no-pref' : '') + '" data-barber="' + b.id + '">'
+            + '<div class="av">' + b.initials + '</div>'
+            + '<div class="info"><div class="nm">' + b.name + '</div><div class="meta">' + b.meta + '</div></div>'
+            + '<div class="radio"></div>'
+            + '</div>';
+        }).join('');
+        return ''
+          + '<div class="bk-stepper">' + stepperHTML(3) + '</div>'
+          + '<div class="bk-body">'
+          +   '<h3>Quem corta hoje?</h3>'
+          +   '<p class="lead">Escolha um profissional ou deixe com a gente.</p>'
+          +   '<div class="bk-barbers">' + rows + '</div>'
+          + '</div>'
+          + '<div class="bk-foot">'
+          +   '<button class="btn btn-ghost" data-act="back">' + ICO_BACK_SM + ' Voltar</button>'
+          +   '<button class="btn btn-gold" data-act="next-3">Continuar <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
+          + '</div>';
+      },
+      step4() {
+        return ''
+          + '<div class="bk-stepper">' + stepperHTML(4) + '</div>'
+          + '<div class="bk-body">'
+          +   '<h3>Quando?</h3>'
+          +   '<p class="lead">Escolha um dia e um horário disponível.</p>'
+          +   (state.errors.slotConflict ? '<div class="bk-banner">O horário ' + state.errors.slotConflict + ' acabou de ser reservado. Escolha outro.</div>' : '')
+          +   renderCalendar()
+          +   renderSlots()
+          + '</div>'
+          + '<div class="bk-foot">'
+          +   '<button class="btn btn-ghost" data-act="back">' + ICO_BACK_SM + ' Voltar</button>'
+          +   '<button class="btn btn-gold" data-act="next-4">Continuar <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
+          + '</div>';
+      },
+      step5() {
+        const s = SERVICES.find(x => x.id === state.data.service);
+        const b = BARBERS.find(x => x.id === state.data.barber);
+        const dt = state.data.date ? dateLabel(state.data.date) + ' · ' + state.data.time : '';
+        return ''
+          + '<div class="bk-stepper">' + stepperHTML(5) + '</div>'
+          + '<div class="bk-body">'
+          +   '<h3>Tudo certo?</h3>'
+          +   '<p class="lead">Confira antes de confirmar.</p>'
+          +   (state.errors.serverError ? '<div class="bk-banner">Não conseguimos confirmar agora. Sua reserva está mantida por 5min — tente novamente.</div>' : '')
+          +   '<div class="bk-sum">'
+          +     '<div class="bk-sum-row"><span class="k">Cliente</span><span class="vwrap"><span class="v">' + esc(state.data.name) + '</span><button class="edit" data-act="edit-1">alterar</button></span></div>'
+          +     '<div class="bk-sum-row"><span class="k">WhatsApp</span><span class="vwrap"><span class="v">' + esc(state.data.whatsapp) + '</span></span></div>'
+          +     '<div class="bk-sum-row"><span class="k">Serviço</span><span class="vwrap"><span class="v">' + s.name + ' · ' + s.duration + 'min</span><button class="edit" data-act="edit-2">alterar</button></span></div>'
+          +     '<div class="bk-sum-row"><span class="k">Barbeiro</span><span class="vwrap"><span class="v">' + b.name + '</span><button class="edit" data-act="edit-3">alterar</button></span></div>'
+          +     '<div class="bk-sum-row"><span class="k">Data</span><span class="vwrap"><span class="v">' + dt + '</span><button class="edit" data-act="edit-4">alterar</button></span></div>'
+          +     '<div class="bk-sum-total"><span class="k">Total</span><span class="v">R$ ' + s.price + '</span></div>'
+          +   '</div>'
+          +   '<p style="font-size: 0.8rem; color: var(--ink-mute); text-align: center; margin: 14px 0 0;">Você receberá confirmação no WhatsApp em alguns segundos.</p>'
+          + '</div>'
+          + '<div class="bk-foot">'
+          +   '<button class="btn btn-ghost" data-act="back">' + ICO_BACK_SM + ' Voltar</button>'
+          +   '<button class="btn btn-gold" data-act="confirm">Confirmar <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
+          + '</div>';
+      },
+      success() {
+        const a = state.lastApt;
+        const s = SERVICES.find(x => x.id === a.service);
+        return ''
+          + '<div class="bk-body bk-success">'
+          +   '<div class="seal">✓</div>'
+          +   '<h3>Agendamento confirmado</h3>'
+          +   '<div class="conf-id">#' + a.id + '</div>'
+          +   '<p class="lead" style="max-width: 36ch; margin: 0 auto;">Te esperamos ' + dateLabelLong(a.date) + ' às ' + a.time + ' para um ' + s.name.toLowerCase() + '.</p>'
+          +   '<div class="actions">'
+          +     '<button class="btn btn-gold" data-act="goto-consult">Ver meus agendamentos</button>'
+          +     '<button class="btn btn-ghost" data-act="close">Voltar ao site</button>'
+          +   '</div>'
+          + '</div>';
+      },
+      consult() {
+        let listHTML = '';
+        if (state.consultError) {
+          listHTML = ''
+            + '<div class="bk-empty">'
+            +   '<div class="ico">⌀</div>'
+            +   '<h4>Nada por aqui</h4>'
+            +   '<p>Não encontramos agendamentos para esse número.</p>'
+            +   '<button class="btn btn-gold" data-act="goto-step1">Agendar agora</button>'
+            + '</div>';
+        } else if (state.consultResults) {
+          const future = state.consultResults.filter(a => isFutureApt(a));
+          const past = state.consultResults.filter(a => !isFutureApt(a));
+          if (future.length) {
+            listHTML += '<div class="bk-section-label">Próximos</div><div class="bk-apt-list">' + future.map(a => aptCard(a, true)).join('') + '</div>';
+          }
+          if (past.length) {
+            listHTML += '<div class="bk-section-label" style="margin-top: 22px;">Histórico</div><div class="bk-apt-list">' + past.map(a => aptCard(a, false)).join('') + '</div>';
+          }
+          if (!future.length && !past.length) {
+            listHTML = '<div class="bk-empty"><div class="ico">⌀</div><h4>Nenhum agendamento ainda</h4><p>Que tal marcar seu primeiro corte?</p><button class="btn btn-gold" data-act="goto-step1">Agendar agora</button></div>';
+          }
+        }
+        const e = state.errors;
+        return ''
+          + '<div class="bk-body">'
+          +   '<h3>Meus agendamentos</h3>'
+          +   '<p class="lead">Informe o WhatsApp usado no agendamento.</p>'
+          +   '<div class="bk-field' + (e.consult ? ' error' : '') + '">'
+          +     '<label for="bkConsult">WhatsApp</label>'
+          +     '<input id="bkConsult" type="tel" inputmode="tel" placeholder="(51) 99999-9999" value="' + esc(state.consultPhone) + '" />'
+          +     (e.consult ? '<div class="err">' + e.consult + '</div>' : '')
+          +   '</div>'
+          +   '<button class="btn btn-gold" data-act="consult-search" style="width: 100%; padding: 14px;">Consultar <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
+          +   listHTML
+          + '</div>';
+      },
+      cancelConfirm() {
+        const apt = loadApts().find(a => a.id === state.pendingCancelId);
+        if (!apt) { state.screen = 'consult'; return screens.consult(); }
+        const s = SERVICES.find(x => x.id === apt.service);
+        return ''
+          + '<div class="bk-body">'
+          +   '<h3 style="color: var(--warn);">Cancelar agendamento?</h3>'
+          +   '<p class="lead">Esta ação não pode ser desfeita. Você precisará agendar de novo se mudar de ideia.</p>'
+          +   '<div class="bk-sum">'
+          +     '<div class="bk-sum-row"><span class="k">Serviço</span><span class="vwrap"><span class="v">' + s.name + '</span></span></div>'
+          +     '<div class="bk-sum-row"><span class="k">Data</span><span class="vwrap"><span class="v">' + dateLabel(apt.date) + ' · ' + apt.time + '</span></span></div>'
+          +   '</div>'
+          +   '<p style="font-size: 0.8rem; color: var(--ink-mute); text-align: center; margin: 10px 0 0;">Cancelamentos com até 2h de antecedência são gratuitos.</p>'
+          + '</div>'
+          + '<div class="bk-foot">'
+          +   '<button class="btn btn-ghost" data-act="back-to-consult">Manter</button>'
+          +   '<button class="btn btn-gold" style="background: transparent; color: var(--warn); border-color: var(--warn);" data-act="confirm-cancel">Cancelar mesmo assim</button>'
+          + '</div>';
+      },
+    };
+
+    // ---- render shell
+    const TITLES = {
+      step1: 'Passo 1 / 5', step2: 'Passo 2 / 5', step3: 'Passo 3 / 5',
+      step4: 'Passo 4 / 5', step5: 'Passo 5 / 5',
+      success: 'Confirmação', consult: 'Meus agendamentos', cancelConfirm: 'Cancelar agendamento',
+    };
+    const HAS_BACK = { step2: true, step3: true, step4: true, step5: true, cancelConfirm: true };
+
+    var ICO_CLOSE = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+    var ICO_BACK = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9 12L4 7l5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var ICO_BACK_SM = '<svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M9 12L4 7l5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    function render() {
+      const screen = state.screen;
+      const hasBack = !!HAS_BACK[screen];
+      const showHead = screen !== 'success';
+      let head = '';
+      if (showHead) {
+        head = ''
+          + '<div class="bk-head">'
+          +   (hasBack
+                ? '<button class="bk-iconbtn" data-act="back" aria-label="Voltar">' + ICO_BACK + '</button>'
+                : '<span style="width:36px;flex-shrink:0;"></span>')
+          +   '<div class="tit">' + (TITLES[screen] || '') + '</div>'
+          +   '<button class="bk-iconbtn" data-act="close" aria-label="Fechar">' + ICO_CLOSE + '</button>'
+          + '</div>';
+      } else {
+        head = ''
+          + '<div class="bk-head">'
+          +   '<span style="width:36px;"></span>'
+          +   '<div class="tit">Confirmado</div>'
+          +   '<button class="bk-iconbtn" data-act="close" aria-label="Fechar">' + ICO_CLOSE + '</button>'
+          + '</div>';
+      }
+      $sheet.innerHTML = head + screens[screen]();
+      // focus first input
+      requestAnimationFrame(() => {
+        const i = $sheet.querySelector('input');
+        if (i && (screen === 'step1' || screen === 'consult') && !i.value) i.focus();
+      });
+    }
+
+    function open(initial) {
+      state.screen = initial || 'step1';
+      if (initial !== 'consult' && initial !== 'success') {
+        // reset booking-specific state when starting a new booking
+        state.data.service = null;
+        state.data.barber = null;
+        state.data.date = null;
+        state.data.time = null;
+        state.errors = {};
+        state._serverTry = 0;
+      }
+      if (initial === 'consult') {
+        if (!state.consultPhone) state.consultPhone = state.data.whatsapp || '';
+        state.consultResults = null;
+        state.consultError = false;
+      }
+      document.body.style.overflow = 'hidden';
+      $overlay.classList.add('open');
+      render();
+    }
+    function close() {
+      $overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function goTo(screen) { state.screen = screen; render(); }
+    function back() {
+      const order = ['step1','step2','step3','step4','step5'];
+      const i = order.indexOf(state.screen);
+      if (i > 0) goTo(order[i-1]);
+      else close();
+    }
+
+    // ---- handlers (event delegation)
+    $overlay.addEventListener('click', (e) => {
+      if (e.target === $overlay) { close(); return; }
+
+      // selectable cards/rows/days/slots
+      const svc = e.target.closest('[data-svc]');
+      if (svc) {
+        state.data.service = svc.dataset.svc;
+        state.errors.service = null;
+        render(); return;
+      }
+      const br = e.target.closest('[data-barber]');
+      if (br) { state.data.barber = br.dataset.barber; render(); return; }
+      const day = e.target.closest('[data-date]');
+      if (day && !day.classList.contains('disabled') && !day.classList.contains('empty')) {
+        state.data.date = day.dataset.date;
+        state.data.time = null;
+        state.errors.slotConflict = null;
+        render(); return;
+      }
+      const slot = e.target.closest('[data-slot]');
+      if (slot && !slot.classList.contains('taken')) {
+        state.data.time = slot.dataset.slot;
+        render(); return;
+      }
+
+      const btn = e.target.closest('[data-act]');
+      if (!btn) return;
+      handleAction(btn.dataset.act, btn);
+    });
+
+    $overlay.addEventListener('input', (e) => {
+      const t = e.target;
+      if (t.id === 'bkName') {
+        state.data.name = t.value;
+        if (state.errors.name && t.value.trim().length >= 2) {
+          state.errors.name = null;
+          const f = t.closest('.bk-field');
+          if (f) { f.classList.remove('error'); const er = f.querySelector('.err'); if (er) er.remove(); }
+        }
+      } else if (t.id === 'bkPhone') {
+        const formatted = fmtPhone(t.value);
+        state.data.whatsapp = formatted;
+        t.value = formatted;
+        if (state.errors.whatsapp && digits(formatted).length === 11) {
+          state.errors.whatsapp = null;
+          const f = t.closest('.bk-field');
+          if (f) { f.classList.remove('error'); const er = f.querySelector('.err'); if (er) er.remove(); }
+        }
+      } else if (t.id === 'bkConsult') {
+        const formatted = fmtPhone(t.value);
+        state.consultPhone = formatted;
+        t.value = formatted;
+      }
+    });
+
+    $overlay.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && (e.target.id === 'bkName' || e.target.id === 'bkPhone')) {
+        e.preventDefault();
+        handleAction('next-1');
+      } else if (e.key === 'Enter' && e.target.id === 'bkConsult') {
+        e.preventDefault();
+        handleAction('consult-search');
+      }
+    });
+
+    function handleAction(act, btn) {
+      switch (act) {
+        case 'close': close(); break;
+        case 'back': back(); break;
+        case 'back-to-consult': state.pendingCancelId = null; goTo('consult'); break;
+        case 'next-1':
+          if (!validateStep1()) { render(); return; }
+          saveUser({ name: state.data.name.trim(), whatsapp: state.data.whatsapp });
+          goTo('step2');
+          break;
+        case 'next-2':
+          if (!state.data.service) { state.errors.service = 'Escolha um serviço para continuar.'; render(); return; }
+          goTo('step3'); break;
+        case 'next-3':
+          if (!state.data.barber) state.data.barber = 'any';
+          goTo('step4'); break;
+        case 'next-4':
+          if (!state.data.date) { toast('Selecione um dia.', 'warn'); return; }
+          if (!state.data.time) { toast('Selecione um horário disponível.', 'warn'); return; }
+          goTo('step5'); break;
+        case 'confirm': {
+          // Simulate occasional server failure on first try (5% chance)
+          if (state._serverTry === 0 && Math.random() < 0.05) {
+            state.errors.serverError = true;
+            state._serverTry = 1;
+            render(); return;
+          }
+          const apt = {
+            id: genId(),
+            name: state.data.name.trim(),
+            whatsapp: state.data.whatsapp,
+            service: state.data.service,
+            barber: state.data.barber,
+            date: state.data.date,
+            time: state.data.time,
+            status: 'confirmed',
+            createdAt: Date.now(),
+          };
+          pushApt(apt);
+          state.lastApt = apt;
+          state.errors = {};
+          state._serverTry = 0;
+          goTo('success');
+          break;
+        }
+        case 'edit-1': goTo('step1'); break;
+        case 'edit-2': goTo('step2'); break;
+        case 'edit-3': goTo('step3'); break;
+        case 'edit-4': goTo('step4'); break;
+        case 'goto-consult':
+          state.consultPhone = state.data.whatsapp;
+          state.consultResults = null;
+          state.consultError = false;
+          state.errors = {};
+          goTo('consult');
+          handleAction('consult-search');
+          break;
+        case 'goto-step1': state.errors = {}; open('step1'); break;
+        case 'consult-search': {
+          const phone = digits(state.consultPhone);
+          if (phone.length < 11) {
+            state.errors.consult = 'Digite um número válido com DDD (11 dígitos).';
+            render(); return;
+          }
+          state.errors.consult = null;
+          const matches = loadApts().filter(a => digits(a.whatsapp) === phone);
+          if (matches.length === 0) {
+            state.consultResults = null;
+            state.consultError = true;
+          } else {
+            state.consultResults = matches.sort((a,b) => b.createdAt - a.createdAt);
+            state.consultError = false;
+          }
+          render();
+          break;
+        }
+        case 'cancel-apt':
+          state.pendingCancelId = btn.dataset.id;
+          goTo('cancelConfirm');
+          break;
+        case 'confirm-cancel': {
+          patchApt(state.pendingCancelId, { status: 'cancelled' });
+          state.pendingCancelId = null;
+          toast('Agendamento cancelado.', 'warn');
+          // refresh consult list
+          const phone = digits(state.consultPhone);
+          state.consultResults = loadApts().filter(a => digits(a.whatsapp) === phone).sort((a,b) => b.createdAt - a.createdAt);
+          goTo('consult');
+          break;
+        }
+        case 'cal-prev': {
+          const d = new Date(state.calMonth);
+          d.setMonth(d.getMonth() - 1);
+          state.calMonth = startOfMonth(d);
+          render();
+          break;
+        }
+        case 'cal-next': {
+          const d = new Date(state.calMonth);
+          d.setMonth(d.getMonth() + 1);
+          state.calMonth = startOfMonth(d);
+          render();
+          break;
+        }
+      }
+    }
+
+    // ESC closes
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && $overlay.classList.contains('open')) close();
+    });
+
+    // ---- Wire up CTAs across the page
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('a, button');
+      if (!el) return;
+      // Allow modifier-click to open the external URL (devs poking around)
+      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+      if (el.dataset.bk === 'consult') {
+        e.preventDefault();
+        open('consult');
+        // close mobile menu if open
+        document.getElementById('nav').classList.remove('open');
+        return;
+      }
+      if (el.dataset.bk === 'start' || (el.href && el.href.indexOf('agendas.link') !== -1)) {
+        e.preventDefault();
+        open('step1');
+        document.getElementById('nav').classList.remove('open');
+        return;
+      }
+    });
+
+    // Expose for debugging
+    window.__bk = { open, close, state, loadApts };
+  })();
+</script>
+</body>
+</html>
