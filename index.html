@@ -885,7 +885,9 @@
   }
   @media (min-width: 860px) {
     .nav-links { display: flex; }
-    .nav-cta { display: inline-flex; }
+    .nav-inner > nav { flex: 1; display: flex; justify-content: center; }
+    .nav-cta { display: inline-flex; padding: 10px 14px; font-size: 0.72rem; letter-spacing: 0.10em; }
+    .nav-cta svg { display: none; }
     .nav-burger { display: none; }
     .hero-inner { grid-template-columns: 1.1fr 0.9fr; gap: 70px; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -898,6 +900,8 @@
   }
   @media (min-width: 1020px) {
     body { font-size: 17px; }
+    .nav-cta { padding: 13px 24px; font-size: 0.78rem; letter-spacing: 0.12em; }
+    .nav-cta svg { display: inline; }
   }
 
   /* ---------- Theme toggle ---------- */
